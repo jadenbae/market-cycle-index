@@ -1,3 +1,5 @@
+import fs from 'fs'
+import path from 'path'
 import { WeeklySnapshot } from './types'
 
 export function getLatestSnapshot(snapshots: WeeklySnapshot[]): WeeklySnapshot | null {
@@ -10,8 +12,7 @@ export function getAllSnapshots(snapshots: WeeklySnapshot[]): WeeklySnapshot[] {
 }
 
 export function loadHistory(): WeeklySnapshot[] {
-  // Dynamic require to avoid issues with Next.js static analysis
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const raw = require('../../data/history.json')
-  return raw as WeeklySnapshot[]
+  const filePath = path.join(process.cwd(), 'data', 'history.json')
+  const raw = fs.readFileSync(filePath, 'utf-8')
+  return JSON.parse(raw) as WeeklySnapshot[]
 }
