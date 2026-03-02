@@ -11,10 +11,7 @@ async function main() {
     console.error('Missing FRED_API_KEY')
     process.exit(1)
   }
-  if (!process.env.ANTHROPIC_API_KEY) {
-    console.error('Missing ANTHROPIC_API_KEY')
-    process.exit(1)
-  }
+  const claudeEnabled = !!process.env.ANTHROPIC_API_KEY
 
   console.log('=== Market Cycle Index Weekly Update ===\n')
 
@@ -48,14 +45,22 @@ async function main() {
     ])
   ) as WeeklySnapshot['indicators']
 
-  // 6. Claude analysis
-  console.log('\nCalling Claude API...')
-  const { claude_score, commentary } = await runClaudeAnalysis(
-    indicators as Record<string, { value: number; sub_score: number }>,
-    ruleScore
-  )
-  console.log(`Claude score: ${claude_score}/100`)
-  console.log(`Commentary preview: ${commentary.slice(0, 100)}...`)
+  // 6. Claude analysis (skipped if ANTHROPIC_API_KEY not set)
+  let claude_score = ruleScore
+  let commentary = 'Claude analysis pending — ANTHROPIC_API_KEY not configured.'
+  if (claudeEnabled) {
+    console.log('\nCalling Claude API...')
+    const result = await runClaudeAnalysis(
+      indicators as Record<string, { value: number; sub_score: number }>,
+      ruleScore
+    )
+    claude_score = result.claude_score
+    commentary = result.commentary
+    console.log(`Claude score: ${claude_score}/100`)
+    console.log(`Commentary preview: ${commentary.slice(0, 100)}...`)
+  } else {
+    console.log('\nSkipping Claude API (ANTHROPIC_API_KEY not set) — using rule score as placeholder')
+  }
 
   // 7. Build and append snapshot
   const today = new Date().toISOString().split('T')[0]
