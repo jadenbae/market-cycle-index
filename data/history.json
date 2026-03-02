@@ -1,1 +1,86 @@
-[]
+[
+  {
+    "date": "2026-03-02",
+    "rule_score": 61,
+    "claude_score": 61,
+    "commentary": "Claude analysis pending — ANTHROPIC_API_KEY not configured.",
+    "indicators": {
+      "cape": {
+        "value": 36,
+        "sub_score": 80
+      },
+      "sp500_pe": {
+        "value": 25.919999999999998,
+        "sub_score": 91
+      },
+      "equity_risk_premium": {
+        "value": -0.35197530864197457,
+        "sub_score": 50
+      },
+      "hy_credit_spread": {
+        "value": 2.98,
+        "sub_score": 91
+      },
+      "ig_credit_spread": {
+        "value": 0.82,
+        "sub_score": 92
+      },
+      "fed_funds_rate": {
+        "value": 3.64,
+        "sub_score": 57
+      },
+      "core_pce": {
+        "value": 2.9968759058262817,
+        "sub_score": 84
+      },
+      "gdp_growth": {
+        "value": 1.4,
+        "sub_score": 23
+      },
+      "unemployment": {
+        "value": 4.3,
+        "sub_score": 78
+      },
+      "sp500_net_margin": {
+        "value": 11.5,
+        "sub_score": 90
+      },
+      "covenant_quality": {
+        "value": 3.8,
+        "sub_score": 40
+      },
+      "corporate_debt_gdp": {
+        "value": 44879.201602282876,
+        "sub_score": 54
+      },
+      "loan_officer_tightening": {
+        "value": 5.3,
+        "sub_score": 43
+      },
+      "ipo_volume": {
+        "value": 180,
+        "sub_score": 40
+      },
+      "ipo_unprofitable_pct": {
+        "value": 55,
+        "sub_score": 52
+      },
+      "aaii_bull_bear_spread": {
+        "value": 15,
+        "sub_score": 45
+      },
+      "vix": {
+        "value": 18.63,
+        "sub_score": 44
+      },
+      "margin_debt_yoy": {
+        "value": 12,
+        "sub_score": 50
+      },
+      "pct_above_200dma": {
+        "value": 62,
+        "sub_score": 58
+      }
+    }
+  }
+]
